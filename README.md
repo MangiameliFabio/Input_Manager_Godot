@@ -1,1 +1,1 @@
-# Input_Manager_Godot
+# Input Manager for Godot

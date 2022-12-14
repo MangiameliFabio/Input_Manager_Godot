@@ -1,13 +1,10 @@
 #include "register_types.h"
 #include "core/class_db.h"
-#include "calculatorRef.h"
-#include "calculatorNode.h"
+#include "randomMapGenerator.h"
 
-void register_input_manager_godot_types(){
-	ClassDB::register_class<CalculatorNode>();
-	ClassDB::register_class<CalculatorRef>();
+void register_random_map_generator_types(){
+	ClassDB::register_class<RandomMapGenerator>();
 }
 
-void unregister_input_manager_godot_types() {
+void unregister_random_map_generator_types() {
 }
-

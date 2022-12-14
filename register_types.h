@@ -1,5 +1,5 @@
-void register_input_manager_godot_types();
-void unregister_input_manager_godot_types();
+void register_random_map_generator_types();
+void unregister_random_map_generator_types();
 
 /*
 	void register_MODULNAME_types();

@@ -7,9 +7,6 @@
 class RandomMapGenerator : public Reference {
 	GDCLASS(RandomMapGenerator, Reference);
 
-	int height_ = 0;
-	int width_ = 0;
-
 
 protected:
 	static void _bind_methods();
@@ -17,7 +14,9 @@ protected:
 public:
 	RandomMapGenerator();
 
-	int** get_generated_map(int width, int height);
+	Array get_generated_map(int width, int height, int start, int end);
+
+	int generate_number(int start, int end);
 
 };
 

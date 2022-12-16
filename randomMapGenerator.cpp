@@ -1,24 +1,33 @@
 #include "randomMapGenerator.h"
 
-RandomMapGenerator::RandomMapGenerator()  {}
+#include "core/math/random_number_generator.h"
+#include "modules/gridmap/grid_map.h"
+#include "scene/gui/grid_container.h"
 
-int **RandomMapGenerator::get_generated_map(int width, int height) {
-	int **array2D = 0;
-	array2D = new int *[height];
+RandomMapGenerator::RandomMapGenerator() {
+}
 
-	for (int h = 0; h < height; h++) {
-		array2D[h] = new int[width];
-
-		for (int w = 0; w < width; w++) {
-			// fill in some initial values
-			array2D[h][w] = 0;
+Array RandomMapGenerator::get_generated_map(const int width, const int height, int start, int end) {
+	Array generated_map;
+	print_line("map array created");
+	for (int x = 0; x < height; ++x) {
+		Array col;
+		for (int y = 0; y < width; ++y) {
+			col.append(generate_number(start, end));
 		}
+		generated_map.append(col);
 	}
+	print_line("finish");
+	return generated_map;
+}
 
-	return array2D;
+int RandomMapGenerator::generate_number(const int start, const int end) {
+	RandomNumberGenerator rng;
+	rng.randomize();
+	return rng.randi_range(start, end);
 }
 
 //Bind all your methods used in this class
 void RandomMapGenerator::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("get_generated_map", "width", "height"), &RandomMapGenerator::get_generated_map);
+	ClassDB::bind_method(D_METHOD("get_generated_map", "width", "height", "start", "end"), &RandomMapGenerator::get_generated_map);
 }

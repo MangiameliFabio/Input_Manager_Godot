@@ -8,16 +8,6 @@ Array RandomMapGenerator::get_generated_map(const int width, const int height) {
 	Array generated_map;
 	print_line("map array created");
 	//Create Base Array
-	// std::vector<std::vector<int>> base_field(height, std::vector<int>(width, 0));
-	//
-	// for (int y = 0; y < height; ++y) {
-	// 	for (int x = 0; x < width; ++x) {
-	// 		const int gn = generate_number();
-	// 		for (int rule_col = 0; rule_col < map_objects_list_[gn].rule.size(); ++rule_col) {
-	//
-	// 		}
-	// 	}
-	// }
 	for (int y = 0; y < height; ++y) {
 		Array col;
 		for (int x = 0; x < width; ++x) {
@@ -44,8 +34,9 @@ Array RandomMapGenerator::get_generated_map(const int width, const int height) {
 							}
 						}
 					}
+				} else {
+					static_cast<Array>(generated_map[y])[x] = gn;
 				}
-
 			}
 
 		}

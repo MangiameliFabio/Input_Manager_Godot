@@ -3,13 +3,13 @@
 #define RANDOMMAPGENERATOR_H
 
 #include "core/reference.h"
-#include "thirdparty/embree/kernels/common/accel.h"
+#include <vector>
 
 struct MapObject {
 	Array rule;
 	int index = 0;
 	float weight = 0;
-	boolean has_rule = false;
+	bool has_rule = false;
 };
 
 class RandomMapGenerator : public Reference {

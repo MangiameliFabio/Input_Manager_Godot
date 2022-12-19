@@ -131,6 +131,55 @@ bool test_4() {
 	return 0 <= rmg->generate_number() && rmg->generate_number() <= 4;
 }
 
+bool test_5() {
+	OS::get_singleton()->print("\n\nTest 5: Generate Map\n");
+	const auto rmg = new RandomMapGenerator();
+
+	rmg->add_new_object();
+	rmg->add_new_object();
+	rmg->add_new_object();
+	rmg->add_new_object();
+	rmg->add_new_object();
+	OS::get_singleton()->print("5 Objects added\n");
+
+	bool control = true;
+
+	Array map = rmg->get_generated_map(10, 10);
+	OS::get_singleton()->print("Map generated\n");
+
+	if (!(map.size() == 10)) {
+		control = false;
+		std::ostringstream oss;
+		oss << "Map was generated with wrong size in y: " << map.size() << "\n";
+		const std::string var = oss.str();
+		OS::get_singleton()->print(var.c_str());
+	}
+
+	for (int i = 0; i < map.size(); ++i) {
+		if (!(static_cast<Array>(map[i]).size() == 10)) {
+			control = false;
+			std::ostringstream oss;
+			oss << "Map was generated with wrong size in x: " << static_cast<Array>(map[i]).size() << "\n";
+			const std::string var = oss.str();
+			OS::get_singleton()->print(var.c_str());
+		}
+		for (int t = 0; t < static_cast<Array>(map[i]).size(); ++t) {
+			if (!(0 <= static_cast<int>(static_cast<Array>(map[i])[t]) && static_cast<int>(static_cast<Array>(map[i])[t]) <= 4)) {
+				control = false;
+				std::ostringstream oss;
+				oss << "Tile has wrong index: " << static_cast<int>(static_cast<Array>(map[i])[t]) << "\n";
+				const std::string var = oss.str();
+				OS::get_singleton()->print(var.c_str());
+			}
+		}
+	}
+	if (control) {
+		OS::get_singleton()->print("Map has been generated correct\n");
+	}
+
+	return control;
+}
+
 typedef bool (*TestFunc)();
 
 TestFunc test_funcs[] = {
@@ -139,6 +188,7 @@ TestFunc test_funcs[] = {
 	test_2,
 	test_3,
 	test_4,
+	test_5,
 	nullptr
 
 };

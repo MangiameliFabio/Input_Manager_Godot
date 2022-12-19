@@ -7,7 +7,6 @@
 
 struct MapObject {
 	Array rule;
-	int index = 0;
 	float weight = 0;
 	bool has_rule = false;
 };
@@ -16,6 +15,12 @@ class RandomMapGenerator : public Reference {
 	GDCLASS(RandomMapGenerator, Reference);
 
 	std::vector<MapObject> map_objects_list_;
+
+//Getter
+public:
+	std::vector<MapObject> get_map_objects_list() const {
+		return map_objects_list_;
+	}
 
 protected:
 	static void _bind_methods();
@@ -27,7 +32,7 @@ public:
 
 	int generate_number();
 
-	void add_new_object(float weight, const Array &rule);
+	void add_new_object(float weight = 1, const Array &rule = Array());
 };
 
 #endif

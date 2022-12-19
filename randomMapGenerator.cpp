@@ -24,7 +24,7 @@ Array RandomMapGenerator::get_generated_map(const int width, const int height) {
 				if (map_objects_list_[gn].has_rule) {
 					for (int rule_col = 0; rule_col < map_objects_list_[gn].rule.size(); ++rule_col) {
 						for (int index = 0; index < static_cast<Array>(map_objects_list_[gn].rule[rule_col]).size(); ++index) {
-							if (static_cast<int>(static_cast<Array>(map_objects_list_[gn].rule[rule_col])[index]) == 1) {
+							if (static_cast<int>(static_cast<Array>(map_objects_list_[gn].rule[rule_col])[index]) > 0) {
 								if (y + rule_col >= height || x + index >= width) {
 									continue;
 								}
@@ -38,7 +38,6 @@ Array RandomMapGenerator::get_generated_map(const int width, const int height) {
 					static_cast<Array>(generated_map[y])[x] = gn;
 				}
 			}
-
 		}
 	}
 	print_line("finish");
@@ -64,13 +63,12 @@ int RandomMapGenerator::generate_number() {
 		rnd -= map_objects_list_[i].weight;
 	}
 	print_line("No Object could be chosen");
-	return 0;
+	return -1;
 }
 
 void RandomMapGenerator::add_new_object(const float weight, const Array &rule) {
 	MapObject object;
 	object.weight = weight;
-	object.index = static_cast<int>(map_objects_list_.size()) + 1;
 	if (!rule.empty()) {
 		object.has_rule = true;
 		object.rule = rule;

@@ -26,8 +26,6 @@ protected:
 	static void _bind_methods();
 
 public:
-	RandomMapGenerator();
-
 	Array get_generated_map(int width, int height);
 
 	int generate_number();

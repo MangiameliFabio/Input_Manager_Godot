@@ -1,9 +1,6 @@
 #include "randomMapGenerator.h"
 #include "core/math/random_number_generator.h"
 
-RandomMapGenerator::RandomMapGenerator() {
-}
-
 Array RandomMapGenerator::get_generated_map(const int width, const int height) {
 	Array generated_map;
 	print_line("map array created");

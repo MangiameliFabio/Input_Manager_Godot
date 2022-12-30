@@ -1,1 +1,1 @@
-# Input Manager for Godot
+# Random Map Generator
